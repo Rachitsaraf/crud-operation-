@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #dfe9f3, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .link {
+      display: block;
+      text-align: center;
+      margin: 10px 0;
+      color: #007BFF;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h2>Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button onclick="handleLogin()">Login</button>
+      <span class="link" onclick="showForgot()">Forgot Password?</span>
+    </div>
+
+    <!-- Forgot Password Form -->
+    <div id="forgotForm" class="hidden">
+      <h2>Forgot Password</h2>
+      <input type="email" id="forgotEmail" placeholder="Enter your email" required />
+      <button onclick="handleForgot()">Send Reset Link</button>
+      <span class="link" onclick="showLogin()">Back to Login</span>
+    </div>
+
+    <!-- Logout Section -->
+    <div id="logoutSection" class="hidden">
+      <h2>Welcome!</h2>
+      <p>You are logged in.</p>
+      <button onclick="handleLogout()">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    function showForgot() {
+      document.getElementById('loginForm').classList.add('hidden');
+      document.getElementById('forgotForm').classList.remove('hidden');
+    }
+
+    function showLogin() {
+      document.getElementById('forgotForm').classList.add('hidden');
+      document.getElementById('logoutSection').classList.add('hidden');
+      document.getElementById('loginForm').classList.remove('hidden');
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email && password) {
+        // Simulate successful login
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('logoutSection').classList.remove('hidden');
+      } else {
+        alert("Please enter both email and password.");
+      }
+    }
+
+    function handleLogout() {
+      showLogin();
+    }
+
+    function handleForgot() {
+      const email = document.getElementById('forgotEmail').value;
+      if (email) {
+        alert("Password reset link sent to " + email);
+        showLogin();
+      } else {
+        alert("Please enter your email.");
+      }
+    }
+  </script>
+</body>
+</html>
+    
